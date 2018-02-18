@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const users = require('./routes/users')
+const users = require('./routes/users.js')
 
 const port = 3000;
 //middleware
