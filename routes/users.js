@@ -6,7 +6,7 @@ router.get('/register',(req,res,next)=>{
     res.send('Register Page');
 });
 //Authentication Route
-router.get('/authenticate',(req,res,next)=>{
+router.post('/authenticate',(req,res,next)=>{
     res.send('Authentication Page');
 });
 //Profile Route
