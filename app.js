@@ -5,8 +5,8 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-//connect to database
 
+//connect to database
 mongoose.connect(config.database);
 //On connection
 mongoose.connection.on('connected', ()=> {
@@ -26,9 +26,11 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-//Password middleware
+//Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+require('./config/passport')(passport);
 
 app.use('/users', users);
 //set static folder
