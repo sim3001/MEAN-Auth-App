@@ -20,7 +20,7 @@
     "body-parser": "*",
     "passport": "*",
     "passport-jwt": "*",
-    "jshint":"*"
+    "jshint": "*"
   },
   "author": "Simranjit Boyal",
   "license": "ISC",

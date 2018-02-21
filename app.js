@@ -9,11 +9,11 @@ const config = require('./config/database');
 //connect to database
 mongoose.connect(config.database);
 //On connection
-mongoose.connection.on('connected', ()=> {
+mongoose.connection.on('connected', () => {
     console.log(`Connected to database ${config.database}`);
 });
 //On Error
-mongoose.connection.on('error', (error)=> {
+mongoose.connection.on('error', (error) => {
     console.log(`Database error ${error}`);
 });
 
@@ -34,13 +34,13 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 //set static folder
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //index route
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
 //setup server
-app.listen(port, () =>{
+app.listen(port, () => {
     console.log(`The application is running on port ${port}`);
 });
