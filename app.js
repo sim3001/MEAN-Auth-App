@@ -33,6 +33,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
+
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
+
 //setup server
 app.listen(port, () => {
     console.log(`The application is running on port ${port}`);

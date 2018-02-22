@@ -58,15 +58,22 @@ router.post('/authenticate', (req, res, next) => {
                         email: user.email
                     }
                 });
-            }else {
-                return res.json({success:false, msg: 'Wrong Password!'});
+            } else {
+                return res.json({
+                    success: false,
+                    msg: 'Wrong Password!'
+                });
             }
         });
     });
 });
 //Profile Route
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-    res.json({user: req.user});
+router.get('/profile', passport.authenticate('jwt', {
+    session: false
+}), (req, res, next) => {
+    res.json({
+        user: req.user
+    });
 });
 
 
