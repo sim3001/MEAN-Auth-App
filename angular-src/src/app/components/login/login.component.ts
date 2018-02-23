@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {ValidateService} from '../../services/validate.service';
 import {Router} from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages'; 
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     const user = {
       username: this.username,
       password: this.password
-    }
+    };
     this.authService.authenticateUser(user).subscribe(data =>{
       if(!this.validateService.validateUserLogin(user)){ //Added this myself!
         this.flashMessage.show('Please fill in all fields',{cssClass: 'alert-danger', timeout:3000});
