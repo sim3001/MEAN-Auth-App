@@ -28,6 +28,7 @@ router.post('/register', (req, res, next) => {
         }
     });
 });
+
 //Authentication Route
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
@@ -67,6 +68,7 @@ router.post('/authenticate', (req, res, next) => {
         });
     });
 });
+
 //Profile Route
 router.get('/profile', passport.authenticate('jwt', {
     session: false
