@@ -57,7 +57,7 @@ export class FloppybirdComponent implements OnInit {
   // on key down
 
   document.addEventListener("keydown", moveUp);
-  document.addEventListener("touchStart",moveUp);
+  document.addEventListener("touchstart", moveUp, false);
 
   function moveUp() {
       bY -= 25;

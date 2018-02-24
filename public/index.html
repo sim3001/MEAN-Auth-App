@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>MEAN Auth App</title>
@@ -9,15 +10,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link href="styles.d41d8cd98f00b204e980.bundle.css" rel="stylesheet"/></head>
+
 <body>
   <app-root>Loading...</app-root>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 
   <script>
-  $(document).ready(function () { $('.navbar-collapse ul li a').click(function () {
-      $(".navbar-collapse").collapse('hide');
-  });}); 
+    $(document).ready(function () {
+      $('.navbar-collapse ul li a').click(function () {
+        $(".navbar-collapse").collapse('hide');
+      });
+      $('body').bind('touchstart', function preventZoom(e) {
+        var t2 = e.timeStamp;
+        var t1 = $(this).data('lastTouch') || t2;
+        var dt = t2 - t1;
+        var fingers = e.originalEvent.touches.length;
+        $(this).data('lastTouch', t2);
+        if (!dt || dt > 500 || fingers > 1) {
+          return; // not double-tap
+        }
+        e.preventDefault(); // double tap - prevent the zoom
+        // also synthesize click events we just swallowed up
+        $(e.target).trigger('click');
+
+      });
+    });
+
   </script>
-<script type="text/javascript" src="inline.b7bb1439bf18eafbd500.bundle.js"></script><script type="text/javascript" src="polyfills.5c5af9b6b0cb4c55ebaa.bundle.js"></script><script type="text/javascript" src="vendor.4e023d9478e2096643bb.bundle.js"></script><script type="text/javascript" src="main.fbbcca8f4fa622ab6931.bundle.js"></script></body>
+<script type="text/javascript" src="inline.f52610010080206cde32.bundle.js"></script><script type="text/javascript" src="polyfills.5c5af9b6b0cb4c55ebaa.bundle.js"></script><script type="text/javascript" src="vendor.4e023d9478e2096643bb.bundle.js"></script><script type="text/javascript" src="main.ee6434cbbd3225566900.bundle.js"></script></body>
+
 </html>
