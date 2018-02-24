@@ -21,7 +21,8 @@ const app = express();
 
 const users = require('./routes/users.js');
 
-const port = 3000;
+const port = process.env.PORT || 8080;
+
 //middleware
 app.use(cors());
 app.use(bodyParser.json());
