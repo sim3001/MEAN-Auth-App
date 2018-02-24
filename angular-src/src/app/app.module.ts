@@ -16,6 +16,7 @@ import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
 import {AuthGuard} from "./guards/auth.guard";
+import { FloppybirdComponent } from './components/floppybird/floppybird.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    FloppybirdComponent
   ],
   imports: [
     BrowserModule,
