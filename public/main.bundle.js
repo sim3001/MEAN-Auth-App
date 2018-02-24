@@ -729,16 +729,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
+        this.isDev = false; // Change to false before deployment
     }
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-type', 'application/json');
-        return this.http.post('users/register', user, { headers: headers }).map(function (res) { return res.json(); });
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('users/register', user, { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-type', 'application/json');
-        return this.http.post('users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('users/authenticate', user, { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
