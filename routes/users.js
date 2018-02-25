@@ -113,8 +113,11 @@ router.post('/forgot', function (req, res, next) {
                 email: req.body.email
             }, function (err, user) {
                 if (!user) {
-                    req.flash('error', 'No account with that email address exists.');
-                    return res.redirect('forgot');
+                    res.json({
+                        success: false,
+                        msg: 'No account with that email address exists.'
+                    });//req.flash('error', '');
+                    //return res.redirect('forgot');
                 }
 
                 user.resetPasswordToken = token;
@@ -143,13 +146,19 @@ router.post('/forgot', function (req, res, next) {
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             smtpTransport.sendMail(mailOptions, function (err) {
-                req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+                res.json({
+                    success: true,
+                    msg: 'Password reset email sent!'
+                });//req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
                 done(err, 'done');
             });
         }
     ], function (err) {
         if (err) return next(err);
-        res.redirect('forgot');
+            res.json({
+                success: false,
+                msg: this.err
+            });
     });
 });
 
@@ -161,8 +170,11 @@ router.get('/reset/:token', function (req, res) {
         }
     }, function (err, user) {
         if (!user) {
-            req.flash('error', 'Password reset token is invalid or has expired.');
-            return res.redirect('forgot');
+            res.json({
+                success: false,
+                msg: 'Password reset email sent!'
+            });//req.flash('error', 'Password reset token is invalid or has expired.');
+            //return res.redirect('forgot');
         }
         res.render('reset', {
             user: req.user
