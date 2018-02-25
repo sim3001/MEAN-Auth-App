@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
   onLoginSubmit(){
     const user = {
-      username: this.username,
+      username: this.username.toLowerCase(),
       password: this.password
     };
     this.authService.authenticateUser(user).subscribe(data =>{

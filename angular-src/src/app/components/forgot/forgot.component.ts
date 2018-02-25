@@ -23,7 +23,7 @@ export class ForgotComponent implements OnInit {
   }
   onforgotSubmit(){
   const user = {
-    email : this.email
+    email : this.email.toLowerCase()
   }
   this.authService.forgotPassword(user).subscribe(data =>{
       if(data.success){
