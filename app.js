@@ -41,10 +41,10 @@ app.use(cors());
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.set('view engine', 'pug');
 // Body Parser Middleware
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
