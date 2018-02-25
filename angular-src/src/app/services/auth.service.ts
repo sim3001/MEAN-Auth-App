@@ -25,6 +25,12 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/forgot', user, {headers:headers}).map(res => res.json());
   }
 
+  resetPassword(user) {
+    let headers= new Headers();
+    headers.append('Content-type', 'application/json');
+    return this.http.post(`http://localhost:3000/users/reset/${user.token}`, user, {headers:headers}).map(res => res.json());
+  }
+
   getProfile() {
     let headers = new Headers();
     this.loadToken();

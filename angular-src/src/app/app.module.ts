@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'forgot', component: ForgotComponent},
-  {path:'reset', component: ResetComponent},
+  {path:'reset/:token', component: ResetComponent},
   {path: 'flappy', component: FloppybirdComponent, canActivate:[AuthGuard]}
 ];
 

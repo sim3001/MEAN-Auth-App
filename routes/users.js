@@ -116,8 +116,7 @@ router.post('/forgot', function (req, res, next) {
                     res.json({
                         success: false,
                         msg: 'No account with that email address exists.'
-                    });//req.flash('error', '');
-                    //return res.redirect('forgot');
+                    });
                 }
 
                 user.resetPasswordToken = token;
@@ -142,7 +141,7 @@ router.post('/forgot', function (req, res, next) {
                 subject: 'MEAN Auth App Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                    'http://' + req.headers.host + '/users/reset/' + token + '\n\n' +
+                    'http://' + req.headers.host + '/reset/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             smtpTransport.sendMail(mailOptions, function (err) {
@@ -162,41 +161,25 @@ router.post('/forgot', function (req, res, next) {
     });
 });
 
-router.get('/reset/:token', function (req, res) {
-    User.findOne({
-        resetPasswordToken: req.params.token,
-        resetPasswordExpires: {
-            $gt: Date.now()
-        }
-    }, function (err, user) {
-        if (!user) {
-            res.json({
-                success: false,
-                msg: 'Password reset email sent!'
-            });//req.flash('error', 'Password reset token is invalid or has expired.');
-            //return res.redirect('forgot');
-        }
-        res.render('reset', {
-            user: req.user
-        });
-    });
-});
 
 router.post('/reset/:token', function (req, res) {
+    let password = req.body.password;
     async.waterfall([
         function (done) {
             User.findOne({
-                resetPasswordToken: req.params.token,
+                resetPasswordToken: req.body.token,
                 resetPasswordExpires: {
                     $gt: Date.now()
                 }
             }, function (err, user) {
                 if (!user) {
-                    req.flash('error', 'Password reset token is invalid or has expired.');
-                    return res.redirect('forgot');
+                    res.json({
+                        success: false,
+                        msg: 'Password reset token is invalid or has expired.'
+                    });
                 }
                 bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(req.body.password, salt, (err, hash) => {
+                    bcrypt.hash(password, salt, (err, hash) => {
                         if (err) throw err;
                         user.password = hash;
                         user.resetPasswordToken = undefined;
@@ -224,12 +207,18 @@ router.post('/reset/:token', function (req, res) {
                     'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
             };
             smtpTransport.sendMail(mailOptions, function (err) {
-                req.flash('success', 'Success! Your password has been changed.');
+                res.json({
+                    success: true,
+                    msg: 'Success! Your password has been changed.'
+                });
                 done(err);
             });
         }
     ], function (err) {
-        res.redirect('/');
+        res.json({
+            success: false,
+            msg: this.err
+        });
     });
 });
 
