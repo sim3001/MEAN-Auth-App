@@ -23,14 +23,12 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post("http://localhost:3000/users/register", user, { headers: headers })
       .map(res => res.json());
   }
   authenticateUser(user) {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post("http://localhost:3000/users/authenticate", user, {
         headers: headers
       })
       .map(res => res.json());
@@ -39,7 +37,6 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post("http://localhost:3000/users/forgot", user, { headers: headers })
       .map(res => res.json());
   }
 
@@ -47,7 +44,6 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post(`http://localhost:3000/users/reset/${user.token}`, user, {
         headers: headers
       })
       .map(res => res.json());
@@ -65,8 +61,11 @@ export class AuthService {
     headers.append("Authorization", this.authToken);
     headers.append("Content-Type", "application/json");
     return this.http
+<<<<<<< HEAD
       .get("http://localhost:3000/users/profile", { headers: headers })
 >>>>>>> passwordreset
+=======
+>>>>>>> Production
       .map(res => res.json());
   }
 
