@@ -22,7 +22,7 @@ router.post("/register", (req, res, next) => {
     if (err) {
         if (err.name === 'MongoError' && err.code === 11000) {
           // Duplicate username
-          return res.json({ success: false, msg: 'Email or Username Already exists!' });
+          return res.json({ success: false, msg: 'Email address or Username already exists!' });
         }else{
       res.json({
         success: false,
