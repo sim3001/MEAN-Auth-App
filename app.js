@@ -22,11 +22,7 @@ const app = express();
 const users = require("./routes/users");
 
 // Port Number
-<<<<<<< HEAD
-const port = process.env.PORT || 8080;
-=======
 const port = 3000; //process.env.PORT || 8080;
->>>>>>> passwordreset
 
 // CORS Middleware
 app.use(cors());

@@ -194,31 +194,6 @@ router.post("/reset/:token", function(req, res) {
                 });
               });
             });
-<<<<<<< HEAD
-        },
-        function (user, done) {
-            var smtpTransport = nodemailer.createTransport({
-                service: 'Mailgun',
-                auth: {
-                    user: 'postmaster@sandboxf942b60cd232410fa8ac03288b26a5dc.mailgun.org',
-                    pass: '727877e9638fb9c92c298f2237c2aaa1'
-                }
-            });
-            var mailOptions = {
-                to: user.email,
-                from: 'passwordreset@frozen-escarpment-49237.herokuapp.com/',
-                subject: 'Your password has been changed',
-                text: 'Hello,\n\n' +
-                    'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-            };
-            smtpTransport.sendMail(mailOptions, function (err) {
-                done(err);
-            });
-        }
-    ], function (err) {
-        res.redirect('/');
-    });
-=======
           }
         );
       },
@@ -256,7 +231,6 @@ router.post("/reset/:token", function(req, res) {
       });
     }
   );
->>>>>>> passwordreset
 });
 
 module.exports = router;
