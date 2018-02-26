@@ -1,35 +1,34 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const config = require('./config/database');
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const passport = require("passport");
+const mongoose = require("mongoose");
+const config = require("./config/database");
 
-
-// Connect To Database 
+// Connect To Database
 mongoose.connect(config.database);
 // On Connection
-mongoose.connection.on('connected', () => {
-    console.log('Connected to Database '+config.database);
+mongoose.connection.on("connected", () => {
+  console.log("Connected to Database " + config.database);
 });
 // On Error
-mongoose.connection.on('error', (err) => {
-    console.log('Database error '+err);
+mongoose.connection.on("error", err => {
+  console.log("Database error " + err);
 });
 
 const app = express();
 
-const users = require('./routes/users');
+const users = require("./routes/users");
 
 // Port Number
-const port = 3000;//process.env.PORT || 8080;
+const port = 3000; //process.env.PORT || 8080;
 
 // CORS Middleware
 app.use(cors());
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -38,13 +37,13 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 ///Users/Routes
-app.use('/users', users);
+app.use("/users", users);
 
 // Index Route
-app.get('/', (req, res) => {
-    res.send('invaild endpoint');
+app.get("/", (req, res) => {
+  res.send("invaild endpoint");
 });
 
 /*
@@ -56,5 +55,5 @@ app.get('*', (req, res) => {
 
 // Start Server
 app.listen(port, () => {
-    console.log('Server started on port '+port);
+  console.log("Server started on port " + port);
 });
