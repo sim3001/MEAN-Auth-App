@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import {AuthGuard} from "./guards/auth.guard";
 import { FloppybirdComponent } from './components/floppybird/floppybird.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -25,6 +26,8 @@ const appRoutes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  {path:'forgot', component: ForgotComponent},
+  {path:'reset/:token', component: ResetComponent},
   {path: 'flappy', component: FloppybirdComponent, canActivate:[AuthGuard]}
 ];
 
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     FloppybirdComponent,
-    ForgotComponent
+    ForgotComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
