@@ -20,10 +20,15 @@ router.post("/register", (req, res, next) => {
 
   User.addUser(newUser, (err, user) => {
     if (err) {
+        if (err.name === 'MongoError' && err.code === 11000) {
+          // Duplicate username
+          return res.json({ success: false, msg: 'Email or Username Already exists!' });
+        }else{
       res.json({
         success: false,
         msg: "Fail to register user"
       });
+      }
     } else {
       res.json({
         success: true,
