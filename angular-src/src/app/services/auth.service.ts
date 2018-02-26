@@ -10,16 +10,6 @@ export class AuthService {
   constructor(private http: Http) {}
 
   registerUser(user) {
-<<<<<<< HEAD
-    let headers= new Headers();
-    headers.append('Content-type', 'application/json');
-    return this.http.post('users/register', user, {headers:headers}).map(res => res.json());
-  }
-  authenticateUser(user) {
-    let headers= new Headers();
-    headers.append('Content-type', 'application/json');
-    return this.http.post('users/authenticate', user, {headers:headers}).map(res => res.json());
-=======
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
@@ -51,26 +41,15 @@ export class AuthService {
         headers: headers
       })
       .map(res => res.json());
->>>>>>> passwordreset
   }
 
   getProfile() {
     let headers = new Headers();
     this.loadToken();
-<<<<<<< HEAD
-    headers.append('Authorization', this.authToken);
-    headers.append('Content-Type', 'application/json');
-    return this.http.get('users/profile', {headers: headers})
-=======
     headers.append("Authorization", this.authToken);
     headers.append("Content-Type", "application/json");
     return this.http
-<<<<<<< HEAD
-      .get("http://localhost:3000/users/profile", { headers: headers })
->>>>>>> passwordreset
-=======
       .get("users/profile", { headers: headers })
->>>>>>> Production
       .map(res => res.json());
   }
 
