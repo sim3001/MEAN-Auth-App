@@ -77,7 +77,6 @@ export class FloppybirdComponent implements OnInit {
       }
 
       function draw() {
-        if(run === true) {
           ctx.drawImage(bg, 0, 0);
 
 
@@ -121,7 +120,6 @@ export class FloppybirdComponent implements OnInit {
           ctx.fillText("Score : " + score, 10, cvs.height - 20);
 
           requestAnimationFrame(draw);
-        }
       }
 
       draw();
