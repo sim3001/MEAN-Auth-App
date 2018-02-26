@@ -1,7 +1,7 @@
 <h2 class="page-header text-center">Flappy Bird</h2>
 <div class="text-center">
   <h4>Press any key or touch to fly</h4>
-  <button (submit)="flappy()">Play Flappy Bird</button>
-  <button (submit)="!flappy()">Stop Playing</button>
+  <button class="button btn-primary" (click)="flappy(true)">Play Flappy Bird</button>
+  <button class="button btn-danger" (click)="flappy(false)">Stop playing</button>
   <canvas id='canvas' width="288" height="512"></canvas>
 </div>
