@@ -12,7 +12,6 @@ export class FloppybirdComponent implements OnInit {
   constructor(private router:Router, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-    this.flappy();
   }
   flappy(){
 
@@ -128,4 +127,4 @@ export class FloppybirdComponent implements OnInit {
   draw();
   }
   }
- 
+
