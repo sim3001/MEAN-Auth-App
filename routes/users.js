@@ -2,24 +2,13 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const passport = require('passport');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const async = require('async');
 const crypto = require('crypto');
-var cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
-var session = require('express-session');
-var flash = require('express-flash');
 const bcrypt = require('bcryptjs');
 
-
-
-router.use(cookieParser());
-router.use(session({
-    secret: 'session secret key'
-}));
-router.use(flash());
 
 //Register Route
 router.post('/register', (req, res, next) => {
@@ -94,11 +83,7 @@ router.get('/profile', passport.authenticate('jwt', {
     });
 });
 
-router.get('/forgot', function (req, res) {
-    res.render('forgot', {
-        user: req.user
-    });
-});
+//Forgot password route
 
 router.post('/forgot', function (req, res, next) {
     async.waterfall([
@@ -161,7 +146,7 @@ router.post('/forgot', function (req, res, next) {
     });
 });
 
-
+//Reset password Route
 router.post('/reset/:token', function (req, res) {
     let password = req.body.password;
     async.waterfall([
