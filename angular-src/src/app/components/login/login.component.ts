@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
     this.authService.authenticateUser(user).subscribe(data =>{
-      if(!this.validateService.validateUserLogin(user)){ //Added this myself!
+      if(!ValidateService.validateUserLogin(user)){ //Added this myself!
         this.flashMessage.show('Please fill in all fields',{cssClass: 'alert-danger text-center', timeout:3000});
         return false;
       }if(data.success){

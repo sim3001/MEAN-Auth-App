@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.flashMessage.show('Please Login',{cssClass: 'alert-danger text-center', timeout:3000});
-      this.router.navigate(['/login']);
+      this.router.navigate(['localhost:3000//login']);
       return false;
     }
   }

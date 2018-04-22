@@ -13,14 +13,14 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post("users/register", user, { headers: headers })
+      .post("http://localhost:3000/users/register", user, { headers: headers })
       .map(res => res.json());
   }
   authenticateUser(user) {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post("users/authenticate", user, {
+      .post("http://localhost:3000/users/authenticate", user, {
         headers: headers
       })
       .map(res => res.json());
@@ -29,7 +29,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post("users/forgot", user, { headers: headers })
+      .post("http://localhost:3000/users/forgot", user, { headers: headers })
       .map(res => res.json());
   }
 
@@ -37,7 +37,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-type", "application/json");
     return this.http
-      .post(`users/reset/${user.token}`, user, {
+      .post(`http://localhost:3000/users/reset/${user.token}`, user, {
         headers: headers
       })
       .map(res => res.json());
@@ -49,7 +49,7 @@ export class AuthService {
     headers.append("Authorization", this.authToken);
     headers.append("Content-Type", "application/json");
     return this.http
-      .get("users/profile", { headers: headers })
+      .get("http://localhost:3000/users/profile", { headers: headers })
       .map(res => res.json());
   }
 
@@ -60,8 +60,7 @@ export class AuthService {
     this.user = user;
   }
   loadToken() {
-    const token = localStorage.getItem("id_token");
-    this.authToken = token;
+    this.authToken = localStorage.getItem("id_token");
   }
   loggedIn() {
     return tokenNotExpired("id_token");
