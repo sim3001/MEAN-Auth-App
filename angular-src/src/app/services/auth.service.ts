@@ -60,8 +60,7 @@ export class AuthService {
     this.user = user;
   }
   loadToken() {
-    const token = localStorage.getItem("id_token");
-    this.authToken = token;
+    this.authToken = localStorage.getItem("id_token");
   }
   loggedIn() {
     return tokenNotExpired("id_token");
