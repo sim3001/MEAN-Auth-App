@@ -8,7 +8,8 @@ Complete MEAN stack application with authentication using json web tokens
 1.0.0
 
 ## Usage
-
+If ng build does not work use this command. This is due to this app being ported from angular 2 to 4. 
+ng build --env=prod
 
 ### Installation
 
